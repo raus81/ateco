@@ -82,7 +82,7 @@ class AtecoController extends Controller {
 
         $mc = AtecoCode::query()->whereParent("")->orderBy("code")->get();
 
-        $json = $this->getJson();
+        //$json = $this->getJson();
 
         //dump($json);
         return view('home',['mc' => $mc]);
