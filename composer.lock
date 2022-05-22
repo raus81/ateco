@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e8cf5ff29568746992a8e8e13ca2ade2",
+    "content-hash": "8f2dc99e5567ad4d621ca21f5fecc151",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -908,6 +908,49 @@
                 }
             ],
             "time": "2022-03-20T21:55:58+00:00"
+        },
+        {
+            "name": "jenner/simple_fork",
+            "version": "1.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/huyanping/simple-fork-php.git",
+                "reference": "4af8f61b283a612492ca9ab790472309ce681156"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/huyanping/simple-fork-php/zipball/4af8f61b283a612492ca9ab790472309ce681156",
+                "reference": "4af8f61b283a612492ca9ab790472309ce681156",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "package",
+            "autoload": {
+                "psr-4": {
+                    "Jenner\\SimpleFork\\": "./src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jenner",
+                    "email": "hypxm@qq.com",
+                    "homepage": "http://www.huyanping.cn"
+                }
+            ],
+            "description": "simple multi process manager based on pcntl",
+            "keywords": [
+                "fork",
+                "fork manager",
+                "process ipc",
+                "process manager"
+            ],
+            "time": "2017-03-22T03:46:18+00:00"
         },
         {
             "name": "laravel/framework",

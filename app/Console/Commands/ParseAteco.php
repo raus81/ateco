@@ -12,7 +12,7 @@ class ParseAteco extends Command {
      *
      * @var string
      */
-    protected $signature = 'manage:parse-ateco';
+    protected $signature = 'manage:parse-ateco {action}';
 
     /**
      * The console command description.
