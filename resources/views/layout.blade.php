@@ -46,7 +46,7 @@
     <!-- Fixed navbar -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/"><img alt="Logo ateco.numerosamente.it" src="/imgs/logoAteco.svg"/></a>
+            <a class="navbar-brand" href="/"><img width="119" height="40" alt="Logo ateco.numerosamente.it" src="/imgs/logoAteco.svg"/></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

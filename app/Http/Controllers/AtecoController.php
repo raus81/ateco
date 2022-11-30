@@ -44,6 +44,23 @@ class AtecoController extends Controller {
 
     }
 
+    public function showImage($code)
+    {
+        $ateco = AtecoCode::query()->whereCode($code)->first();
+
+        $array = explode( "\n", wordwrap( strtoupper($ateco->nome), 40));
+        //dd( $array);
+
+        $data = Storage::get('template.svg');
+        $data = str_replace("#COD#", $code,  $data);
+        for( $i = 0; $i < 3; $i++ ){
+            $data = str_replace("#LINE$i#",$array[$i]??"", $data);
+        }
+
+        return response($data)->header('Content-Type', 'image/svg+xml');
+
+    }
+
     public function showCode($code)
     {
 //        $json = collect($this->getJson());
@@ -85,9 +102,8 @@ class AtecoController extends Controller {
         //$json = $this->getJson();
 
         //dump($json);
-        return view('home',['mc' => $mc]);
+        return view('home', ['mc' => $mc]);
     }
-
 
 
     public function suggester(Request $request)
@@ -99,12 +115,12 @@ class AtecoController extends Controller {
         $search = $params['search'];
         return AtecoCode::query()->where(
             [['code', 'like', $search . '%']]
-        )->orWhere([ ['nome', 'like', '%'.$search.'%']])
+        )->orWhere([['nome', 'like', '%' . $search . '%']])
             ->orderBy(DB::raw('LENGTH("search") '))
             ->limit(10)
             ->get()
             ->map(function ($item) {
-                return ['nome' => $item->code . ' ' .$item->nome, 'url' => url('codice/' . $item->code)];
+                return ['nome' => $item->code . ' ' . $item->nome, 'url' => url('codice/' . $item->code)];
             });
     }
 

@@ -54,7 +54,7 @@
     @endif
     @if(count($adempimenti))
         <h2 class="text-primary"><small><i class="fa-solid fa-scale-balanced"></i></small> Adempimenti</h2>
-        <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion accordion-flush " id="accordionFlushExample">
 
             @foreach( $adempimenti as $attività => $data )
                 <div class="accordion-item">
@@ -65,13 +65,13 @@
                             {{$attività}}
                         </button>
                     </h3>
-                    <div id="flush-{{$loop->index}}" class="accordion-collapse collapse"
+                    <div id="flush-{{$loop->index}}" class="accordion-collapse collapse show"
                          aria-labelledby="flush-headingOne"
                          data-bs-parent="#accordionFlushExample">
                         <div class="accordion-body">
                             @if(isset( $data['NAZIONALE']))
                                 <div class="d-flex justify-content-start align-items-center"><img
-                                        class="italy-icon   me-2"
+                                        class="italy-icon   me-2" height="65" width="50"
                                         src="/imgs/italy.svg"/>
                                     <h4>
                                         Normativa
@@ -87,6 +87,9 @@
         </div>
     @endif
 
+    <div class="w-100 mt-2">
+        <img width="1024" height="449" alt="CODICE ATECO {{$ateco->code}} - {{$ateco->nome}}" class=" img-fluid" src="/immagini/svg/{{$ateco->code}}" style="border-radius: 10px; max-width: 1024px;width: 100%;"/>
+    </div>
 
 
 @endsection

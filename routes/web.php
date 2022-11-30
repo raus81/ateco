@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[\App\Http\Controllers\AtecoController::class,"home"]);
 Route::get('/codice/{code}',[\App\Http\Controllers\AtecoController::class,"showCode"]);
+Route::get('/immagini/svg/{code}',[\App\Http\Controllers\AtecoController::class,"showImage"]);
+
 
 
 Route::get('/test/{code}',[\App\Http\Controllers\AtecoController::class,"testCode"]);
