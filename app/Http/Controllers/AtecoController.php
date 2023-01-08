@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Storage;
 
 class AtecoController extends Controller {
 
+    public function aboutUs(){
+        return view('about-us');
+    }
 
     public function testCode($code)
     {
