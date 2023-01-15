@@ -3,8 +3,8 @@
 @push('head')
 
     <meta name="description"
-          content=" ">
-    <title>Codice ateco </title>
+          content="Mission di ateco.numerosamente.it">
+    <title>Su di noi</title>
     <link rel="canonical" href="{{url("/about-us")}}"/>
 @endpush
 @section('content')

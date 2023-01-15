@@ -54,13 +54,13 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        <a class="nav-link  {{ (Request::is('/') ? 'active' : '') }}" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/about-us">Chi siamo</a>
+                        <a class="nav-link {{ (Request::is('about-us') ? 'active' : '') }}" href="/about-us">Chi siamo</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="#" tabindex="-1"  >Contatti</a>
+                        <a class="nav-link {{ (Request::is('faq') ? 'active' : '') }}" href="/faq" tabindex="-1"  >FAQ</a>
                     </li>
                 </ul>
 
@@ -72,7 +72,7 @@
 <!-- Begin page content -->
 <main class="flex-shrink-0 flex-grow-1 d-flex">
     <div class="container flex-grow-1">
-        @yield('content')
+         @yield('content')
 
 
     </div>
