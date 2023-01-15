@@ -35,5 +35,9 @@ Route::get('/esempi-utilizzo',function(){
 Route::get('/glossario',function(){
     return view('info.glossario');
 });
+Route::get('/casi-di-studio',function(){
+    return view('info.casi-di-studio');
+});
+
 
 Route::get('/test/{code}',[\App\Http\Controllers\AtecoController::class,"testCode"]);

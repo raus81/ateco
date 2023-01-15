@@ -68,8 +68,9 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="/errori-comuni">Errori comuni</a></li>
-                            <li><a class="dropdown-item" href="/codice-corretto">Scegliere il codice Ateco</a></li>
                             <li><a class="dropdown-item" href="/esempi-utilizzo">Esempi di utlizzo</a></li>
+                            <li><a class="dropdown-item" href="/casi-di-studio">Casi di studio</a></li>
+                            <li><a class="dropdown-item" href="/codice-corretto">Scegliere il codice Ateco</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="/glossario">Glossario</a></li>
 
