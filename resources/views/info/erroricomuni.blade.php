@@ -5,7 +5,7 @@
     <meta name="description"
           content="Errori comuni nell'utilizzo di codici Ateco e come evitarli">
     <title>Codici Ateco: errori comuni</title>
-    <link rel="canonical" href="{{url("/about-us")}}"/>
+    <link rel="canonical" href="{{url("/errori-comuni")}}"/>
 @endpush
 
 @section('content')
