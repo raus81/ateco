@@ -71,6 +71,7 @@
                             <li><a class="dropdown-item" href="/codice-corretto">Scegliere il codice Ateco</a></li>
                             <li><a class="dropdown-item" href="/esempi-utilizzo">Esempi di utlizzo</a></li>
                             <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/glossario">Glossario</a></li>
 
                         </ul>
                     </li>
