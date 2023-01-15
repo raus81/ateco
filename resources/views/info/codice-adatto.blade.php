@@ -5,7 +5,7 @@
     <meta name="description"
           content="Come trovare il codice ATECO corretto: una spiegazione dettagliata dei passi da seguire per trovare il codice ATECO corretto per la tua attività, incluse le risorse disponibili e come utilizzarle.">
     <title>Come trovare il codice ATECO corretto</title>
-    <link rel="canonical" href="{{url("/about-us")}}"/>
+    <link rel="canonical" href="{{url("/codice-corretto")}}"/>
 @endpush
 
 @section('content')

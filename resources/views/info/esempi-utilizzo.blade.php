@@ -5,7 +5,7 @@
     <meta name="description"
           content="Esempi di utilizzo: diverse situazioni in cui è possibile utilizzare i codici ATECO, accompagnati da esempi specifici per aiutare gli utenti a capire meglio come utilizzare i codici.">
     <title>Codici Ateco: Esempi di utilizzo</title>
-    <link rel="canonical" href="{{url("/about-us")}}"/>
+    <link rel="canonical" href="{{url("/errori-comuni")}}"/>
 @endpush
 
 @section('content')

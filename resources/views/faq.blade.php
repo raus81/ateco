@@ -5,7 +5,7 @@
     <meta name="description"
           content="Domande frequesti sui codici ATECO">
     <title>Codice ateco - FAQ</title>
-    <link rel="canonical" href="{{url("/about-us")}}"/>
+    <link rel="canonical" href="{{url("/faq")}}"/>
 @endpush
 
 @section('content')
