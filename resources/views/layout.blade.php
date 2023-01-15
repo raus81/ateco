@@ -62,6 +62,18 @@
                     <li class="nav-item">
                         <a class="nav-link {{ (Request::is('faq') ? 'active' : '') }}" href="/faq" tabindex="-1"  >FAQ</a>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Informazioni utili
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/errori-comuni">Errori comuni</a></li>
+                            <li><a class="dropdown-item" href="/codice-corretto">Scegliere il codice Ateco</a></li>
+                            <li><a class="dropdown-item" href="/esempi-utilizzo">Esempi di utlizzo</a></li>
+                            <li><hr class="dropdown-divider"></li>
+
+                        </ul>
+                    </li>
                 </ul>
 
             </div>

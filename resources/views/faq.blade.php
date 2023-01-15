@@ -7,7 +7,6 @@
     <title>Codice ateco - FAQ</title>
     <link rel="canonical" href="{{url("/about-us")}}"/>
 @endpush
-@section('content')
 
 @section('content')
     <div class="mt-2">
