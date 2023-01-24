@@ -18,6 +18,10 @@ Route::get('/about-us',[\App\Http\Controllers\AtecoController::class,"aboutUs"])
 
 Route::get('/codice/{code}',[\App\Http\Controllers\AtecoController::class,"showCode"]);
 Route::get('/immagini/svg/{code}',[\App\Http\Controllers\AtecoController::class,"showImage"]);
+
+Route::get('/statistiche/codice/{code}',[\App\Http\Controllers\AtecoController::class,"showStats"]);
+
+
 Route::get('/faq',function(){
     return view('faq');
 });

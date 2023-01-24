@@ -5,13 +5,25 @@ namespace App\Http\Controllers;
 use App\Models\AtecoCode;
 use App\Models\AtecoComune;
 use App\Models\Attivita;
+use App\Services\CodeService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class AtecoController extends Controller {
 
-    public function aboutUs(){
+    private $codeService;
+
+    /**
+     * @param $codeService
+     */
+    public function __construct()
+    {
+        $this->codeService = new CodeService();
+    }
+
+    public function aboutUs()
+    {
         return view('about-us');
     }
 
@@ -51,16 +63,53 @@ class AtecoController extends Controller {
     {
         $ateco = AtecoCode::query()->whereCode($code)->first();
 
-        $array = explode( "\n", wordwrap( strtoupper($ateco->nome), 40));
+        $array = explode("\n", wordwrap(strtoupper($ateco->nome), 40));
         //dd( $array);
 
         $data = Storage::get('template.svg');
-        $data = str_replace("#COD#", $code,  $data);
-        for( $i = 0; $i < 3; $i++ ){
-            $data = str_replace("#LINE$i#",$array[$i]??"", $data);
+        $data = str_replace("#COD#", $code, $data);
+        for ($i = 0; $i < 3; $i++) {
+            $data = str_replace("#LINE$i#", $array[$i] ?? "", $data);
         }
 
         return response($data)->header('Content-Type', 'image/svg+xml');
+
+    }
+
+    public function showStats($code)
+    {
+        $ateco = AtecoCode::query()->whereCode($code)->first();
+        $plainCode = str_replace('.', '', $code);
+
+        $lastKey = null;
+        $data = collect([]);
+        if (Storage::exists('stats/' . $plainCode . '.json')) {
+            $filtered = collect(json_decode(Storage::get('stats/' . $plainCode . '.json')))
+                ->filter(function ($v) {
+                    return isset($v->Z);
+                })->mapWithKeys(function($v,$k){
+                    return [$k => $v->Z];
+                });
+
+            $lastKey = $filtered->keys()->last();
+            if ($lastKey != null) {
+                $items = collect($filtered[$lastKey]);
+                $total = $items->sum();
+                $remainder = 100;
+                foreach($items as $key => $value ){
+                    $percentage = round(($value / $total) * 100, 1);
+
+                    if ($items->last() == $value) {
+                        $percentage = $remainder;
+                    } else {
+                        $remainder -= $percentage;
+                    }
+                    $items[$key] = $percentage;
+                    $data[$key] = collect(['items' => $value, 'percentage' => $percentage]);
+                 }
+            }
+        }
+        dump($data, $items);
 
     }
 
@@ -87,14 +136,13 @@ class AtecoController extends Controller {
     order by LENGTH(code) asc";
 
         $breadcrumb = DB::select(DB::raw($sql));
+        $stats = $this->codeService->getStatsByCode($code);
 
 
-        //dump( $atecoComune);
-//
-//        echo $info['noteInclusioneHtml'];
         return view('code', ['info' => $info, 'ateco' => $ateco, 'children' => $children,
             'adempimenti' => $adempimenti,
-            'bc' => $breadcrumb]);
+            'bc' => $breadcrumb,
+            'stats' => $stats]);
     }
 
     public function home()

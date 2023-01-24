@@ -15,7 +15,10 @@ require('laravel-mix-purgecss');
 
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
-    .purgeCss();
+
+
+// mix.copy('node_modules/chart.js/Chart.js', 'public/js');
+    //.purgeCss();
     // .postCss('resources/css/app.css', 'public/css', [
     //     //
     // ]);

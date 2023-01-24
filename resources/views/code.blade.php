@@ -86,10 +86,90 @@
             @endforeach
         </div>
     @endif
+    @if(isset($stats))
+ <h2 class="text-primary"><i class="fa-solid fa-chart-pie"></i> Distribuzione del codice {{$ateco->code }} nelle zone d'Italia</h2>
+        <div class="row">
+            <div class="col-6">
+                <div class="d-flex">
+                    <canvas id="myChart" width="500" height="200"></canvas>
+                </div>
+            </div>
+            <div class="col-6">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Zona</th>
+                        <th>Percentuale</th>
+                        <th>Elementi</th>
+                    </tr>
+                    </thead>
+                    @foreach($stats['data'] as $key =>$value)
+                        <tr>
+                            <td>{{$key}}</td>
+                            <td>{{$value['percentage']}}%</td>
+                            <td>{{$value['items']}}</td>
+                        </tr>
+
+
+                    @endforeach
+                </table>
+            </div>
+        </div>
+        <script>
+            // Crea un elemento canvas per il grafico
+
+            document.addEventListener('DOMContentLoaded', function () {
+                const ctx = document.getElementById('myChart').getContext('2d');
+
+                // Dati per il grafico
+                const data = {
+                    labels: {!!  json_encode($stats['data']->keys()->toArray() )!!},
+                    datasets: [{
+                        label: '# di attività',
+                        data: {!!json_encode($stats['data']->map(function($item){return $item['items'];})->values())!!},
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                };
+
+                // Opzioni per il grafico
+                const options = {
+                    responsive: true,
+                    maintainAspectRatio: false
+                };
+                //Crea il grafico
+                const myPieChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: data,
+                    options: options
+                });
+            });
+
+        </script>
+
+
+    @endif
 
     <div class="w-100 mt-2">
-        <img width="1024" height="449" alt="CODICE ATECO {{$ateco->code}} - {{$ateco->nome}}" class=" img-fluid" src="/immagini/svg/{{$ateco->code}}" style="border-radius: 10px; max-width: 1024px;width: 100%;"/>
+        <img width="1024" height="449" alt="CODICE ATECO {{$ateco->code}} - {{$ateco->nome}}" class=" img-fluid"
+             src="/immagini/svg/{{$ateco->code}}" style="border-radius: 10px; max-width: 1024px;width: 100%;"/>
     </div>
+
 
 
 @endsection
