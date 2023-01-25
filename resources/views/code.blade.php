@@ -136,7 +136,7 @@
                         @if($loop->last)
                             e infine
                         @endif
-                        {{$key}} con {{$value['percentage']}}@if(! $loop->last), @endif
+                        {{$key}} con {{$value['percentage']}}%@if(! $loop->last), @endif
                     @endforeach.
                 </p>
             </div>
