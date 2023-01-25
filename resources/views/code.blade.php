@@ -87,14 +87,20 @@
         </div>
     @endif
     @if(isset($stats))
- <h2 class="text-primary"><i class="fa-solid fa-chart-pie"></i> Distribuzione del codice {{$ateco->code }} nelle zone d'Italia</h2>
+        @php
+            $sorted = $stats['data']->sortByDesc('percentage');
+             $topZone = $sorted->keys()->first();
+        @endphp
+
+        <h2 class="text-primary"><i class="fa-solid fa-chart-pie"></i> Distribuzione del codice {{$ateco->code }} nelle
+            zone d'Italia</h2>
         <div class="row">
-            <div class="col-6">
+            <div class="col-12 col-lg-6">
                 <div class="d-flex">
                     <canvas id="myChart" width="500" height="200"></canvas>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-12 col-lg-6">
                 <table class="table">
                     <thead>
                     <tr>
@@ -114,7 +120,29 @@
                     @endforeach
                 </table>
             </div>
+            <div class="col-12">
+                <p>
+                    Il codice ateco {{$ateco->code}}, relativo a <em>{{strtolower($ateco->nome)}}</em>, è maggiormente
+                    presente nelle
+                    regioni
+                    @if($topZone != 'Isole')
+                        delle
+                    @else
+                        del
+                    @endif
+                    {{$topZone}} con una percentuale di {{$sorted->first()['percentage']}}%.
+                    Seguono poi:
+                    @foreach($sorted->skip(1) as $key => $value)
+                        @if($loop->last)
+                            e infine
+                        @endif
+                        {{$key}} con {{$value['percentage']}}@if(! $loop->last), @endif
+                    @endforeach.
+                </p>
+            </div>
         </div>
+
+
         <script>
             // Crea un elemento canvas per il grafico
 

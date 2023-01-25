@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Storage;
 class CodeService {
 
 
-    function getStatsByCode($code){
+    function getStatsByCode($code)
+    {
         $lastKey = null;
         $plainCode = str_replace('.', '', $code);
 
@@ -16,7 +17,7 @@ class CodeService {
             $filtered = collect(json_decode(Storage::get('stats/' . $plainCode . '.json')))
                 ->filter(function ($v) {
                     return isset($v->Z);
-                })->mapWithKeys(function($v,$k){
+                })->mapWithKeys(function ($v, $k) {
                     return [$k => $v->Z];
                 });
 
@@ -25,7 +26,7 @@ class CodeService {
                 $items = collect($filtered[$lastKey]);
                 $total = $items->sum();
                 $remainder = 100;
-                foreach($items as $key => $value ){
+                foreach ($items as $key => $value) {
                     $percentage = round(($value / $total) * 100, 1);
 
                     if ($items->last() == $value) {
@@ -33,11 +34,11 @@ class CodeService {
                     } else {
                         $remainder -= $percentage;
                     }
-                    $items[$key] = $percentage;
-                    $data[$key] = collect(['items' => $value, 'percentage' => $percentage]);
+                    $items[$key] = round($percentage, 1);
+                    $data[$key] = collect(['items' => $value, 'percentage' => round($percentage, 1)]);
                 }
             }
         }
-        return $data->isEmpty() ? null: collect(['year' => $lastKey, 'data' => $data]);
+        return $data->isEmpty() ? null : collect(['year' => $lastKey, 'data' => $data]);
     }
 }
