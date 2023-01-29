@@ -6,6 +6,43 @@ use Illuminate\Support\Facades\Storage;
 
 class CodeService {
 
+    function getFullStatsByCode($code)
+    {
+        $lastKey = null;
+        $plainCode = str_replace('.', '', $code);
+
+        $data = collect([]);
+        if (!Storage::exists('stats/' . $plainCode . '.json')) {
+            return null;
+        }
+        $data = collect(json_decode(Storage::get('stats/' . $plainCode . '.json')));
+
+        $zones = $data->filter(function ($v) {
+            return isset($v->Z);
+        })->mapWithKeys(function ($v, $k) {
+            return [$k => $v->Z];
+        });
+        $zoneValue = [];
+        foreach ($zones as $year => $zones) {
+            foreach ($zones as $zone => $value) {
+                $zoneValue[$zone][$year] = $value;
+            }
+        }
+         $italia = $data->mapWithKeys(function ($v, $k) {
+            return [$k => ['value' => $v->I->Italia]];
+        })->toArray();
+
+        $previous_year = null;
+
+        foreach ($italia as $year => $year_data) {
+            if ($previous_year !== null) {
+                $diff = ($year_data['value'] - $previous_year['value']) / $previous_year['value'] * 100;
+                $italia[$year]['growth'] = round($diff, 2);
+            }
+            $previous_year = $year_data;
+        }
+        return ['italia' => collect($italia), 'zone' => collect($zoneValue)];
+    }
 
     function getStatsByCode($code)
     {

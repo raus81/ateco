@@ -81,6 +81,10 @@ class AtecoController extends Controller {
         $ateco = AtecoCode::query()->whereCode($code)->first();
         $plainCode = str_replace('.', '', $code);
 
+        $stats = $this->codeService->getFullStatsByCode($code);
+        $stats['ateco'] = $ateco;
+        return view('stats', $stats);
+
         $lastKey = null;
         $data = collect([]);
         if (Storage::exists('stats/' . $plainCode . '.json')) {

@@ -140,6 +140,7 @@
                     @endforeach.
                 </p>
             </div>
+            <a href="/statistiche/codice/{{$ateco->code}}"> Mostra più statistiche</a>
         </div>
 
 
