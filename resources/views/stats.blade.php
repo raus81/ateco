@@ -83,7 +83,7 @@
         @if( !$less && $growth->count() )
             Il picco di crescita tra gli anni è stato tra il {{$growth->keys()->last() - 1}} e
             il {{$growth->keys()->last()}},
-            con un calo del {{$growth->last()['growth']}}% nel numero di imprese registrate con codice
+            con un aumento del {{$growth->last()['growth']}}% nel numero di imprese registrate con codice
             Ateco {{$ateco->code}} in Italia.
         @endif
 
